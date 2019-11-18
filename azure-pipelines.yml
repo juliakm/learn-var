@@ -11,13 +11,13 @@ stages:
     - script: echo Hello, world!
 
 - stage: 'StageB'
+  variables:
+   - group: 'Release'
   dependsOn: StageA
   condition: and(succeeded(), eq(variables['schemaChanged'], 'True'))
   jobs: 
   - job: 'JobB'
     pool:
       vmImage: 'ubuntu-16.04'
-    variables:
-    - group: 'Release'
     steps:
     - script: echo Hello, world!
