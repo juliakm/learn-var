@@ -6,18 +6,8 @@ stages:
   jobs: 
   - job: 'JobA'
     pool:
-      vmImage: 'ubuntu-16.04'
+      vmImage: 'ubuntu-latest'
     steps:
     - script: echo Hello, world!
+    - script: echo $(outer)
 
-- stage: 'StageB'
-  variables:
-   - group: 'Release'
-  dependsOn: StageA
-  condition: and(succeeded(), eq(variables['schemaChanged'], 'True'))
-  jobs: 
-  - job: 'JobB'
-    pool:
-      vmImage: 'ubuntu-16.04'
-    steps:
-    - script: echo Hello, world!
