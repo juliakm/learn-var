@@ -10,4 +10,5 @@ stages:
     steps:
     - script: echo Hello, world!
     - script: echo $(outer)
+    - script: echo $(extreme)
 
