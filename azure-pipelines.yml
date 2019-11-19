@@ -7,7 +7,9 @@ pool:
 
 steps: 
   - script: echo hello world
-  - script: echo $(name)
+  - script: echo $(NAME)
+  - script: echo $[NAME]
+  - script: echo $[variables.name]
   - script: echo $(Date:yyyyMMdd).$(Rev:r)
   #- script: echo $[format('{0:00}', variables.MyBuildNumber)]
 
