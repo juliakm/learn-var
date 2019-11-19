@@ -1,11 +1,13 @@
-stages:
-- stage: 'StageA'
-  jobs: 
-  - job: 'JobA'
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
-    - script: echo $[format('{0:00}', variables.MyBuildNumber)]
+trigger:
+- '*'
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps: 
+  - script: echo hello world
+  #- script: echo $[format('{0:00}', variables.MyBuildNumber)]
 
 
 # stages:
