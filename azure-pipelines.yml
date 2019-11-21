@@ -5,4 +5,4 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-  - script: echo ${{ format('{0} Build', $(outer)) }}
+  - script: echo ${{ format('{0} Build', Agent.Id) }}
