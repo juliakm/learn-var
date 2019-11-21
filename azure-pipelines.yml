@@ -1,8 +1,11 @@
 trigger:
   - '*'
 
+variables:
+  a: format('Hello {0} {1}', 'John', 'Doe')
+
 pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-  - script: echo format('Hello {0} {1}', 'John', 'Doe')
+  - script: echo $(a)
