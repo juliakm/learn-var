@@ -2,10 +2,14 @@ trigger:
   - '*'
 
 variables:
-  a: format('Hello {0} {1}', 'John', 'Doe')
+  b: "Hello" 
 
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-  - script: echo $(a)
+jobs:
+- job:
+  variables:
+    a: $[counter(format('{0:yyyyMMdd}', pipeline.startTime), 100)]
+  steps:
+    - bash: echo $(a)
