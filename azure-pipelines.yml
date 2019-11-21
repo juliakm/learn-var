@@ -5,4 +5,4 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-  - script: echo format('Build', 500)
+  - script: echo format('Hello {0} {1}', 'John', 'Doe')
