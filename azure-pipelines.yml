@@ -16,7 +16,7 @@ jobs:
     d: $[format('{0:zzz}', pipeline.startTime)]
     e: $[format('{0:MdH}', pipeline.startTime)]
     f: $[format('{0:msf}', pipeline.startTime)]
-    g: $[format('{0:msf}', pipeline.startTime)]
+    g: $[format('{0:K}', pipeline.startTime)]
     # d: $[format("12", "X4")]
     # e: $[format('.2468013', "P")]
     
