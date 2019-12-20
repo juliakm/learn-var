@@ -11,11 +11,16 @@ jobs:
 - job:
   variables:
     a: $[counter(format('{0:yyyyMMdd}', pipeline.startTime), 100)]
-    c: $[format('{0:yyyyMMdd}', pipeline.startTime)]
     b: $[format('Hello {0} {1}', 'John', 'Doe')]
+    c: $[format('{0:yyyyMMdd}', pipeline.startTime)]
+    d: $[format(12, "X4")]
+    e: $[format(.2468013, "P")]
+    
 
   steps:
     - bash: echo $(a)
-    - bash: echo $(c)
     - bash: echo $(b)
+    - bash: echo $(c)
+    - bash: echo $(d)
+    - bash: echo $(e)
     
