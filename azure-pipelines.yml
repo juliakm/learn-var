@@ -13,7 +13,7 @@ jobs:
     a: $[counter(format('{0:yyyyMMdd}', pipeline.startTime), 100)]
     b: $[format('Hello {0} {1}', 'John', 'Doe')]
     c: $[format('{0:yyyyMMdd}', pipeline.startTime)]
-    #date: $[date]
+    date: $[date]
    # d: $[format(12, "X4")]
     #e: $[format('.2468013', "P")]
     
@@ -23,5 +23,5 @@ jobs:
     - bash: echo $(b)
     - bash: echo $(c)
   #  - bash: echo $(d)
-   # - bash: echo $(date)
+  # - bash: echo $(date)
     
