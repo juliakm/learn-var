@@ -15,6 +15,7 @@ jobs:
     c: $[format('{0:yyyyMMdd}', pipeline.startTime)]
     d: $[format('{0:zzz}', pipeline.startTime)]
     e: $[format('{0:MdH}', pipeline.startTime)]
+    f: $[format('{0:msf}', pipeline.startTime)]
     # d: $[format("12", "X4")]
     # e: $[format('.2468013', "P")]
     
@@ -25,6 +26,7 @@ jobs:
     - bash: echo $(c)
     - bash: echo $(d)
     - bash: echo $(e)
+    - bash: echo $(f)
   #  - bash: echo $(d)
   # - bash: echo $(date)
     
