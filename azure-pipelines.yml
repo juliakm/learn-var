@@ -29,7 +29,7 @@ jobs:
     - bash: echo $(e)
     - bash: echo $(f)
     - bash: echo $(g)
-    - bash: echo $(format('{0:zzz}', pipeline.startTime))
+   # - bash: echo $(format('{0:zzz}', pipeline.startTime))
   #  - bash: echo $(d)
   # - bash: echo $(date)
     
