@@ -14,6 +14,7 @@ jobs:
     b: $[format('Hello {0} {1}', 'John', 'Doe')]
     c: $[format('{0:yyyyMMdd}', pipeline.startTime)]
     d: $[format('{0:zzz}', pipeline.startTime)]
+    e: $[format('{0:%M%d%H%m%s%k', pipeline.startTime)]
     # d: $[format("12", "X4")]
     # e: $[format('.2468013', "P")]
     
@@ -23,6 +24,7 @@ jobs:
     - bash: echo $(b)
     - bash: echo $(c)
     - bash: echo $(d)
+    - bash: echo $(e)
   #  - bash: echo $(d)
   # - bash: echo $(date)
     
