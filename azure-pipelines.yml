@@ -1,35 +1,60 @@
 trigger:
   - '*'
 
-variables:
-  b: "Hello" 
+stages:
+- stage: one
+  jobs:
+  - job: A
+    pool:
+      vmImage: 'vs2017-win2016'
+    steps:
+    - powershell: echo "##vso[task.setvariable variable=myOutputVar;isOutput=true]this is the value"
+      name: setvarStep
+    - script: echo $(setvarStep.myOutputVar)
+      name: echovar
 
-pool:
-  vmImage: 'ubuntu-latest'
+- stage: two
+    # Map the variable into job B
+  jobs:
+  - job: B
+    dependsOn: A
+    pool:
+        vmImage: 'ubuntu-16.04'
+    variables:
+        myVarFromJobA: $[ dependencies.A.outputs['setvarStep.myOutputVar'] ]  # map in the variable
+    steps:
+    - script: echo $(myVarFromJobA)
+      name: echovar
 
-jobs:
-- job:
-  variables:
-    a: $[counter(format('{0:yyyyMMdd}', pipeline.startTime), 100)]
-    b: $[format('Hello {0} {1}', 'John', 'Doe')]
-    c: $[format('{0:yyyyMMdd}', pipeline.startTime)]
-    d: $[format('{0:zzz}', pipeline.startTime)]
-    e: $[format('{0:MdH}', pipeline.startTime)]
-    f: $[format('{0:msf}', pipeline.startTime)]
-    g: $[format('{0:K}', pipeline.startTime)]
-    # d: $[format("12", "X4")]
-    # e: $[format('.2468013', "P")]
+# variables:
+#   b: "Hello" 
+
+# pool:
+#   vmImage: 'ubuntu-latest'
+
+# jobs:
+# - job:
+#   variables:
+#     a: $[counter(format('{0:yyyyMMdd}', pipeline.startTime), 100)]
+#     b: $[format('Hello {0} {1}', 'John', 'Doe')]
+#     c: $[format('{0:yyyyMMdd}', pipeline.startTime)]
+#     d: $[format('{0:zzz}', pipeline.startTime)]
+#     e: $[format('{0:MdH}', pipeline.startTime)]
+#     f: $[format('{0:msf}', pipeline.startTime)]
+#     g: $[format('{0:K}', pipeline.startTime)]
+#     # d: $[format("12", "X4")]
+#     # e: $[format('.2468013', "P")]
     
 
-  steps:
-    - bash: echo $(a)
-    - bash: echo $(b)
-    - bash: echo $(c)
-    - bash: echo $(d)
-    - bash: echo $(e)
-    - bash: echo $(f)
-    - bash: echo $(g)
-   # - bash: echo $(format('{0:zzz}', pipeline.startTime))
-  #  - bash: echo $(d)
-  # - bash: echo $(date)
+#   steps:
+#     - bash: echo $(a)
+#     - bash: echo $(b)
+#     - bash: echo $(c)
+#     - bash: echo $(d)
+#     - bash: echo $(e)
+#     - bash: echo $(f)
+#     - bash: echo $(g)
+#   # - bash: echo $(format('{0:zzz}', pipeline.startTime))
+#   #  - bash: echo $(d)
+#   # - bash: echo $(date)
     
