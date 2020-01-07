@@ -20,7 +20,7 @@ jobs:
       name: echovar
     - script: echo $(dependencies.A.outputs['setvarStep.myOutputVar'])
       name: echo_no_name
-
+#since not every field evaluates runtime expressions, safest to assign to a var
 # variables:
 #   b: "Hello" 
 
