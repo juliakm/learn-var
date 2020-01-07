@@ -1,9 +1,6 @@
 trigger:
   - '*'
-
-stages:
-- stage: one
-  jobs:
+jobs:
   - job: A
     pool:
       vmImage: 'vs2017-win2016'
@@ -12,14 +9,6 @@ stages:
       name: setvarStep
     - script: echo $(setvarStep.myOutputVar)
       name: echovar
-
-- stage: two
-  dependsOn: one
-    # Map the variable into job B
-  jobs:
-  - job: C
-    pool:
-      vmImage: 'ubuntu-latest'
   - job: B
     dependsOn: one.A
     pool:
