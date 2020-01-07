@@ -10,7 +10,7 @@ jobs:
     - script: echo $(setvarStep.myOutputVar)
       name: echovar
   - job: B
-    dependsOn: one.A
+    dependsOn: A
     pool:
         vmImage: 'ubuntu-16.04'
     variables:
