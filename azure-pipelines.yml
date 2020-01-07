@@ -29,6 +29,8 @@ stages:
     steps:
     - script: echo $(myVarFromJobA)
       name: echovar
+    - script: echo $[dependencies.A.outputs['setvarStep.myOutputVar'] ]
+      name: echo_no_name
 
 # variables:
 #   b: "Hello" 
