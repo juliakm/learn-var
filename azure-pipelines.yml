@@ -20,11 +20,11 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
   - job: B
-    dependsOn: one.A
+    dependsOn: one
     pool:
         vmImage: 'ubuntu-16.04'
     variables:
-        myVarFromJobA: $[ dependencies.one.A.outputs['setvarStep.myOutputVar'] ]  # map in the variable
+        myVarFromJobA: $[dependencies.A.outputs['setvarStep.myOutputVar'] ]  # map in the variable
     steps:
     - script: echo $(myVarFromJobA)
       name: echovar
