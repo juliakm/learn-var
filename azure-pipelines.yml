@@ -16,6 +16,9 @@ stages:
 - stage: two
     # Map the variable into job B
   jobs:
+  - job: C
+    pool:
+      vmImage: 'ubuntu-latest'
   - job: B
     dependsOn: A
     pool:
