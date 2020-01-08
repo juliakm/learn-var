@@ -1,3 +1,8 @@
+resources:
+  pipelines:
+  - pipeline: juliakm.fabrikam-node
+    source: JSTesting
+
 trigger:
   - '*'
 jobs:
