@@ -6,8 +6,8 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      Write-Output "1 + 1 equals $(1 + 1)"
-      Write-Output '1 + 1 equals $(1 + 1)'
+      Write-Output "1 + 1 equals $(1 + 1)" # Prints 1 + 1 equals 2
+      Write-Output '1 + 1 equals $(1 + 1)' # Prints 1 + 1 equals $(1 + 1)
 
 
 
