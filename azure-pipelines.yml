@@ -6,10 +6,8 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      # Write your PowerShell commands here.
-      
       Write-Output "1 + 1 equals $(1 + 1)"
-      Write-Output "1 + 1 equals `$(1 + 1)`"
+      # Write-Output "1 + 1 equals `$(1 + 1)`"
 
 
 
