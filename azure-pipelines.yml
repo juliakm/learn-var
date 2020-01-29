@@ -1,9 +1,5 @@
 
-trigger:
-  - '*'
-
-parameters:
-  doThing: false
+parameters: {doThing: false}
 
 jobs:
 - job: param_testing
