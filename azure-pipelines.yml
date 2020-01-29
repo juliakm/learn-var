@@ -1,15 +1,13 @@
 
 trigger:
   - '*'
+
+parameters:
+  doThing: false
+
 steps:
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: |
-      Write-Output "1 + 1 equals $(1 + 1)" # Prints 1 + 1 equals 2
-      Write-Output "1 + 1 equals ${1 + 1}" # Prints 1 + 1 equals $(1 + 1)
-
-
+- script: echo I did a thing
+  condition: and(succeeded(), eq('${{ parameters.doThing }}', false))
 
 
 #since not every field evaluates runtime expressions, safest to assign to a var
