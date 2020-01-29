@@ -6,7 +6,7 @@ jobs:
 - job: param_testing
   steps:
   - script: echo I did a thing
-    condition: and(succeeded(), eq('${{ parameters.doThing }}', false))
+    condition: and(succeeded(), eq('${{ variables.doThing }}', false))
 
 
 #since not every field evaluates runtime expressions, safest to assign to a var
