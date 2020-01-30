@@ -1,9 +1,9 @@
 
-variables:
-  doThing: false
 
 jobs:
 - job: param_testing
+pool:
+  vmImage: 'windows-latest'
   steps:
   - script: echo I did a thing
     condition: and(succeeded(), eq('${{ variables.doThing }}', false))
