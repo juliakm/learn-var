@@ -11,7 +11,8 @@ jobs:
   - script: echo I did a thing
     condition: and(succeeded(), eq('${{ variables.doThing }}', false))
   - script: echo $(Agent.TempDirectory)
-  - script: echo $(variables.prod)
+  - script: echo $(variables.stageName)
+  - script: echo ${{variables.stageName}}
 
 
 #since not every field evaluates runtime expressions, safest to assign to a var
