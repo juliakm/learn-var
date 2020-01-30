@@ -1,18 +1,19 @@
-variables:
-  ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
-    stageName: prod
-
 pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo ${{variables.stageName}}
+- task: CopyFiles@2
+  inputs:
+    sourceFolder: '$(Build.SourcesDirectory)'
+    contents: '**/$(BuildConfiguration)/**/?(*.exe|*.dll|*.pdb)'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
 - task: PublishBuildArtifacts@1
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ${{ if eq(variables['stageName'], 'master') }}:
+    ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
       artifactName: 'prod'
-    ${{ if eq(variables['stageName'], 'master') }}:
+    ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
       artifactName: 'dev'
 
 
