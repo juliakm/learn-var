@@ -10,9 +10,9 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ${{ if eq($variables['stageName'], 'master') }}:
+    ${{ if eq(variables['stageName'], 'master') }}:
       artifactName: 'prod'
-    ${{ if eq($variables['stageName'], 'master') }}:
+    ${{ if eq(variables['stageName'], 'master') }}:
       artifactName: 'dev'
 
 
