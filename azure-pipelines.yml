@@ -5,14 +5,8 @@ variables:
 pool:
   vmImage: 'ubuntu-latest'
 
-jobs:
-- job: param_testing
-  steps:
-  - script: echo I did a thing
-    condition: and(succeeded(), eq('${{ variables.doThing }}', false))
-  - script: echo $(Agent.TempDirectory)
-  - script: echo $(stageName)
-  - script: echo ${{variables.stageName}}
+steps:
+- script: echo ${{variables.stageName}}
 
 
 #since not every field evaluates runtime expressions, safest to assign to a var
