@@ -11,7 +11,7 @@ jobs:
   - script: echo I did a thing
     condition: and(succeeded(), eq('${{ variables.doThing }}', false))
   - script: echo $(Agent.TempDirectory)
-  - script: echo $(variables.stageName)
+  - script: echo $(stageName)
   - script: echo ${{variables.stageName}}
 
 
