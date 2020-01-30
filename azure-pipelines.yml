@@ -7,6 +7,13 @@ pool:
 
 steps:
 - script: echo ${{variables.stageName}}
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ${{ if eq($variables['stageName'], 'master') }}:
+      artifactName: 'prod'
+    ${{ if eq($variables['stageName'], 'master') }}:
+      artifactName: 'dev'
 
 
 #since not every field evaluates runtime expressions, safest to assign to a var
