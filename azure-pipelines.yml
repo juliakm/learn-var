@@ -13,9 +13,6 @@ steps:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
       artifactName: 'prod'
-    ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
-      artifactName: 'dev'
-
 
 #since not every field evaluates runtime expressions, safest to assign to a var
 # variables:
