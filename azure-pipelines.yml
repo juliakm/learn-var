@@ -3,20 +3,13 @@ pool:
 
 steps:
 
-- task: UseNode@1
-- script: npm install
-
-- task: CopyFiles@2
+- task: DotNetCoreCLI@2
   inputs:
-    sourceFolder: '$(Build.SourcesDirectory)'
-    contents: '**/$(BuildConfiguration)/**/?(*.exe|*.dll|*.pdb)'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+  ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
+    command: build
+  ${{ if neq(variables['Build.SourceBranchName'], 'master') }}:
+    command: test
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    #pathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
-      artifactName: 'prod'
 
 #since not every field evaluates runtime expressions, safest to assign to a var
 # variables:
