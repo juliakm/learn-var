@@ -2,16 +2,14 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: Bash@3
+- task: PublishPipelineArtifact@1
   inputs:
-    targetType: 'inline'
+    targetPath: '$(Pipeline.Workspace)'
     ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
-      script: |
-      echo 'Hello production'
+    artifact: 'prod'
     ${{ if ne(variables['Build.SourceBranchName'], 'master') }}:
-      script: |
-      echo 'Hello testing'
-
+    artifact: 'prod'
+    publishLocation: 'pipeline'
 
 
 #since not every field evaluates runtime expressions, safest to assign to a var
