@@ -2,6 +2,13 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Write your commands here
+      
+      echo ${{ Environment.Name }}
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Pipeline.Workspace)'
