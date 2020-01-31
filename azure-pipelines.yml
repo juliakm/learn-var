@@ -5,10 +5,11 @@ steps:
 - task: Bash@3
   inputs:
     targetType: 'inline'
-    script: |
     ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
+    script: |
       echo 'Hello production'
     ${{ if ne(variables['Build.SourceBranchName'], 'master') }}:
+    script: |
       echo 'Hello testing'
 
 
