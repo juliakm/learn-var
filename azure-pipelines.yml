@@ -2,6 +2,10 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+
+- task: UseNode@1
+- script: npm install
+
 - task: CopyFiles@2
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)'
@@ -10,7 +14,7 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    #pathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
       artifactName: 'prod'
 
