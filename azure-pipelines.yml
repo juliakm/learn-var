@@ -5,10 +5,11 @@ steps:
 
 - task: DotNetCoreCLI@2
   inputs:
-  ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
-    command: build
-  ${{ if neq(variables['Build.SourceBranchName'], 'master') }}:
-    command: test
+      projects: '**/*.csproj'
+      ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
+        command: build
+      ${{ if neq(variables['Build.SourceBranchName'], 'master') }}:
+        command: test
 
 
 #since not every field evaluates runtime expressions, safest to assign to a var
