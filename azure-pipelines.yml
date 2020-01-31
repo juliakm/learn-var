@@ -6,10 +6,10 @@ steps:
   inputs:
     targetType: 'inline'
     ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
-    script: |
+      script: |
       echo 'Hello production'
     ${{ if ne(variables['Build.SourceBranchName'], 'master') }}:
-    script: |
+      script: |
       echo 'Hello testing'
 
 
