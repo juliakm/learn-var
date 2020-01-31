@@ -2,13 +2,15 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-
-- task: DotNetCoreCLI@2
+- task: Bash@3
   inputs:
-      ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
-        command: build
-      ${{ if ne(variables['Build.SourceBranchName'], 'master') }}:
-        command: test
+    targetType: 'inline'
+    script: |
+    ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
+      echo 'Hello production'
+    ${{ if ne(variables['Build.SourceBranchName'], 'master') }}:
+      echo 'Hello testing'
+
 
 
 #since not every field evaluates runtime expressions, safest to assign to a var
