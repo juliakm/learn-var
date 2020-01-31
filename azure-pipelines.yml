@@ -6,9 +6,9 @@ steps:
   inputs:
     targetPath: '$(Pipeline.Workspace)'
     ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
-    artifact: 'prod'
+      artifact: 'prod'
     ${{ if ne(variables['Build.SourceBranchName'], 'master') }}:
-    artifact: 'prod'
+      artifact: 'prod'
     publishLocation: 'pipeline'
 
 
