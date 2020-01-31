@@ -8,7 +8,7 @@ steps:
     script: |
       # Write your commands here
       
-      echo ${{ SYSTEM_JOBDISPLAYNAME }}
+      echo $SYSTEM_JOBDISPLAYNAME
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Pipeline.Workspace)'
