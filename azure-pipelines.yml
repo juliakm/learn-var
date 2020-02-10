@@ -21,7 +21,8 @@ steps:
   inputs:
     To: 'julia.kullamader@microsoft.com'
     CC: 'jkullama@gmail.com'
-    Subject: 
+    From: 'julia.kullamader@microsoft.com'
+    Subject: 'Testing task'
     Body: |
       $SYSTEM_JOBDISPLAYNAME
       
