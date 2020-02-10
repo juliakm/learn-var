@@ -6,7 +6,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      # Write your commands here
+       Write your commands here
       
       echo $SYSTEM_JOBDISPLAYNAME
 - task: PublishPipelineArtifact@1
