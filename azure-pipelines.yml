@@ -7,7 +7,6 @@ steps:
     targetType: 'inline'
     script: |      
       echo $SYSTEM_JOBDISPLAYNAME
-      exit()
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Pipeline.Workspace)'
@@ -16,6 +15,18 @@ steps:
     ${{ if ne(variables['Build.SourceBranchName'], 'master') }}:
       artifact: 'prod'
     publishLocation: 'pipeline'
+
+- task: SendEmail@1
+  inputs:
+    To: 'julia.kullamader@microsoft.com'
+    CC: 'jkullama@gmail.com'
+    Subject: 
+    Body: |
+      $SYSTEM_JOBDISPLAYNAME
+      
+      $(Pipeline.Workspace)
+    BodyAsHtml: false
+    AddAttachment: false
 
 
 #since not every field evaluates runtime expressions, safest to assign to a var
