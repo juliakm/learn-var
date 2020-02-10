@@ -5,10 +5,9 @@ steps:
 - task: Bash@3
   inputs:
     targetType: 'inline'
-    script: |
-       Write your commands here
-      
+    script: |      
       echo $SYSTEM_JOBDISPLAYNAME
+      exit()
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Pipeline.Workspace)'
