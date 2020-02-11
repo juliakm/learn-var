@@ -7,21 +7,30 @@ resources:
    - pipeline: doesitmatter
      source: learnvartesting
 
-steps:
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: |      
-      echo $SYSTEM_JOBDISPLAYNAME
-      echo $resources.pipeline.doesitmatter.projectName
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: '$(Pipeline.Workspace)'
-    ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
-      artifact: 'prod'
-    ${{ if ne(variables['Build.SourceBranchName'], 'master') }}:
-      artifact: 'prod'
-    publishLocation: 'pipeline'
+stages:
+- stage: StageA
+  displayName: Stage A
+  jobs: 
+  - job: Bash
+    displayName: Bash
+    steps:
+      - task: Bash@3
+        inputs:
+          targetType: 'inline'
+          script: |      
+            echo $SYSTEM_JOBDISPLAYNAME
+            echo $resources.pipeline.doesitmatter.projectName
+  - job: PublishArtifact
+    displayName: Publish Artifact
+    steps:
+      - task: PublishPipelineArtifact@1
+        inputs:
+          targetPath: '$(Pipeline.Workspace)'
+          ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
+            artifact: 'prod'
+          ${{ if ne(variables['Build.SourceBranchName'], 'master') }}:
+            artifact: 'prod'
+          publishLocation: 'pipeline'
 
 
 #since not every field evaluates runtime expressions, safest to assign to a var
