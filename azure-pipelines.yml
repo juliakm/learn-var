@@ -13,6 +13,7 @@ steps:
     targetType: 'inline'
     script: |      
       echo $SYSTEM_JOBDISPLAYNAME
+      echo $resources.pipeline.doesitmatter.projectName
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Pipeline.Workspace)'
