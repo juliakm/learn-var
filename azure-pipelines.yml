@@ -2,6 +2,11 @@ pool:
   #vmImage: 'ubuntu-latest'
   vmImage: 'windows-latest'
 
+resources:
+ pipelines:
+   - pipeline: learnvartesting
+     source: run
+
 steps:
 - task: Bash@3
   inputs:
@@ -16,19 +21,6 @@ steps:
     ${{ if ne(variables['Build.SourceBranchName'], 'master') }}:
       artifact: 'prod'
     publishLocation: 'pipeline'
-
-- task: SendEmail@1
-  inputs:
-    To: 'julia.kullamader@microsoft.com'
-    CC: 'jkullama@gmail.com'
-    From: 'julia.kullamader@microsoft.com'
-    Subject: 'Testing task'
-    Body: |
-      $SYSTEM_JOBDISPLAYNAME
-      
-      $(Pipeline.Workspace)
-    BodyAsHtml: false
-    AddAttachment: false
 
 
 #since not every field evaluates runtime expressions, safest to assign to a var
