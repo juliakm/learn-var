@@ -4,8 +4,8 @@ pool:
 
 resources:
  pipelines:
-   - pipeline: learnvartesting
-     source: run
+   - pipeline: doesitmatter
+     source: learnvartesting
 
 steps:
 - task: Bash@3
