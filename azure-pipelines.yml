@@ -1,68 +1,20 @@
+trigger:
+- master
+
 pool:
-  #vmImage: 'ubuntu-latest'
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-latest'
 
-resources:
- pipelines:
-   - pipeline: doesitmatter
-     source: learnvartesting
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
 
-stages:
-- stage: StageA
-  displayName: Stage A
-  jobs: 
-  - job: Bash
-    displayName: Bash
-    steps:
-      - task: Bash@3
-        inputs:
-          targetType: 'inline'
-          script: |      
-            echo $SYSTEM_JOBDISPLAYNAME
-            echo $resources.pipeline.doesitmatter.projectName
-  - job: PublishArtifact
-    displayName: Publish Artifact
-    steps:
-      - task: PublishPipelineArtifact@1
-        inputs:
-          targetPath: '$(Pipeline.Workspace)'
-          ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
-            artifact: 'prod'
-          ${{ if ne(variables['Build.SourceBranchName'], 'master') }}:
-            artifact: 'prod'
-          publishLocation: 'pipeline'
+# - script: |
+#     npm install
+#     npm run build
+#   displayName: 'npm install and build'
 
-
-#since not every field evaluates runtime expressions, safest to assign to a var
-# variables:
-#   b: "Hello" 
-
-# pool:
-#   vmImage: 'ubuntu-latest'
-
-# jobs:
-# - job:
-#   variables:
-#     a: $[counter(format('{0:yyyyMMdd}', pipeline.startTime), 100)]
-#     b: $[format('Hello {0} {1}', 'John', 'Doe')]
-#     c: $[format('{0:yyyyMMdd}', pipeline.startTime)]
-#     d: $[format('{0:zzz}', pipeline.startTime)]
-#     e: $[format('{0:MdH}', pipeline.startTime)]
-#     f: $[format('{0:msf}', pipeline.startTime)]
-#     g: $[format('{0:K}', pipeline.startTime)]
-#     # d: $[format("12", "X4")]
-#     # e: $[format('.2468013', "P")]
-    
-
-#   steps:
-#     - bash: echo $(a)
-#     - bash: echo $(b)
-#     - bash: echo $(c)
-#     - bash: echo $(d)
-#     - bash: echo $(e)
-#     - bash: echo $(f)
-#     - bash: echo $(g)
-#   # - bash: echo $(format('{0:zzz}', pipeline.startTime))
-#   #  - bash: echo $(d)
-#   # - bash: echo $(date)
-    
+- task: PublishBuildArtifacts@1
+  inputs: 
+    pathtoPublish: $(build.artifactstagingdirectory) # dist or build files
