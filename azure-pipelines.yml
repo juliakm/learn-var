@@ -1,8 +1,9 @@
 resources:
   containers:
-  - container: mycontainer
+  - container: javascript
     image: mycontainerjulia.azurecr.io/juliakmpipelinesjavascriptdocker
     endpoint: myServiceConnection
 
 steps:
 - script: echo hello
+- script: printenv
