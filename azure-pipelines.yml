@@ -1,13 +1,6 @@
-resources:
-  containers:
-  - container: mycontainer
-    type: ACR
-    azureSubscription: ARM
-    resourceGroup: Visual Studio Enterprise - Julia
-    registry: mycontainerjulia
-    #repository: xxx/docker-acr:v1-tag
+container:
+  image: jkullama/cheers2019
+  endpoint: myServiceConnection
 
-
-  steps:
-    - script: echo $(resources.container.mycontainer.type)
-
+steps:
+- script: echo hello
