@@ -6,18 +6,12 @@ resources:
     resourceGroup: cloud-shell-storage-eastus
     repository: mycontainerjulia.azurecr.io/juliakmpipelinesjavascriptdocker
     registry: mycontainerjulia.azurecr.io
+  #- container: js2
     #image: mycontainerjulia.azurecr.io/juliakmpipelinesjavascriptdocker
     #endpoint: myServiceConnection
-  # - container: ACRResource2
-  #   azureSubscription: ARM
-  #   resourceGroup: xxx
-  #   registry: xxx
-  #   repository: mycontainerjulia.azurecr.io/juliakmpipelinesjavascriptdocker
 
 
 steps:
 - script: echo hello
 - script: echo $(resources.container.javascript.type)
 - script: echo $(resources.containers.container.javascript.type)
-#- script: echo ${{ resources.container.javascript }}
-#- script: echo ${{ resources.containers.container.javascript.type }}
