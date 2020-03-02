@@ -6,4 +6,4 @@ resources:
 
 steps:
 - script: echo hello
-- script: printenv
+- script: echo $(resources.container.javascript.registry)
