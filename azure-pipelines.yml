@@ -2,8 +2,11 @@ resources:
   containers:
   - container: javascript
     type: ACR
-    image: mycontainerjulia.azurecr.io/juliakmpipelinesjavascriptdocker
-    endpoint: myServiceConnection
+    azureSubscription: ARM
+    resourceGroup: cloud-shell-storage-eastus
+    repository: mycontainerjulia.azurecr.io/juliakmpipelinesjavascriptdocker
+    #image: mycontainerjulia.azurecr.io/juliakmpipelinesjavascriptdocker
+    #endpoint: myServiceConnection
   # - container: ACRResource2
   #   azureSubscription: ARM
   #   resourceGroup: xxx
