@@ -1,20 +1,13 @@
 resources:
   containers:
-  - container: u18
-    image: ubuntu:18.04
+  - container: mycontainer
+    type: ACR
+    azureSubscription: ARM
+    resourceGroup: Visual Studio Enterprise - Julia
+    registry: mycontainerjulia
+    #repository: xxx/docker-acr:v1-tag
 
-jobs:
-- job: RunInContainer
-  pool:
-    vmImage: 'ubuntu-16.04'
-
-  strategy:
-    matrix:
-      ubuntu18:
-        containerResource: u18
-
-  container: $[ variables['containerResource'] ]
 
   steps:
-    - script: echo $(resources.container.u18.type)
+    - script: echo $(resources.container.mycontainer.type)
 
