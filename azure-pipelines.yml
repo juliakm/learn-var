@@ -1,9 +1,19 @@
 resources:
   containers:
   - container: javascript
+    type: ACR
     image: mycontainerjulia.azurecr.io/juliakmpipelinesjavascriptdocker
     endpoint: myServiceConnection
+  # - container: ACRResource2
+  #   azureSubscription: ARM
+  #   resourceGroup: xxx
+  #   registry: xxx
+  #   repository: mycontainerjulia.azurecr.io/juliakmpipelinesjavascriptdocker
+
 
 steps:
 - script: echo hello
-- script: echo $(resources.container.javascript.registry)
+- script: echo $(resources.container.javascript.type)
+- script: echo $(resources.containers.container.javascript.type)
+- script: echo ${{ resources.container.javascript.type }}
+- script: echo ${{ resources.containers.container.javascript.type }}
