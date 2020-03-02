@@ -5,6 +5,7 @@ resources:
     azureSubscription: ARM
     resourceGroup: cloud-shell-storage-eastus
     repository: mycontainerjulia.azurecr.io/juliakmpipelinesjavascriptdocker
+    registry: mycontainerjulia.azurecr.io
     #image: mycontainerjulia.azurecr.io/juliakmpipelinesjavascriptdocker
     #endpoint: myServiceConnection
   # - container: ACRResource2
