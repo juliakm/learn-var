@@ -1,6 +1,8 @@
-container:
-  image: jkullama/cheers2019
-  endpoint: myServiceConnection
+resources:
+  containers:
+  - container: mycontainer
+    image: mycontainerjulia.azurecr.io/juliakmpipelinesjavascriptdocker
+    endpoint: myServiceConnection
 
 steps:
 - script: echo hello
