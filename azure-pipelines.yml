@@ -13,5 +13,6 @@ resources:
 
 steps:
 - script: echo hello
-- script: echo $(resources.container.javascript.type)
-- script: echo $(resources.containers.container.javascript.type)
+- script: echo $(Build.Reason)
+#- script: echo $(resources.container.javascript.type)
+#- script: echo $(resources.containers.container.javascript.type)
