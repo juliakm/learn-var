@@ -6,9 +6,6 @@ resources:
     resourceGroup: cloud-shell-storage-eastus
     repository: mycontainerjulia.azurecr.io/juliakmpipelinesjavascriptdocker
     registry: mycontainerjulia.azurecr.io
-  #- container: js2
-    #image: mycontainerjulia.azurecr.io/juliakmpipelinesjavascriptdocker
-    #endpoint: myServiceConnection
 
 
 steps:
@@ -17,3 +14,4 @@ steps:
 - script: echo $(resources.triggeringAlias)
 #- script: echo $(resources.container.javascript.type)
 #- script: echo $(resources.containers.container.javascript.type)
+- script: printenv
