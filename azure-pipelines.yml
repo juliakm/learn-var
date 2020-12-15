@@ -1,4 +1,11 @@
 resources:
+  pipelines:
+  - pipeline: mypipeline
+    source: resources
+    trigger:
+      branches:
+      - master 
+container:
   repositories:
   - repository: common
     type: github
