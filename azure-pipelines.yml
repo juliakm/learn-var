@@ -17,6 +17,7 @@ steps:
 - script: echo hello
 - script: echo $(Build.Reason)
 - script: echo $(resources.triggeringAlias)
+- script: echo $(resources.triggeringCategory) 
 #- script: echo $(resources.container.javascript.type)
 #- script: echo $(resources.containers.container.javascript.type)
 - script: printenv
