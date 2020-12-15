@@ -4,6 +4,9 @@ resources:
     type: github
     name: juliakm/learn-var
     endpoint: MyContosoServiceConnection
+    trigger: 
+        - master
+        - release/*
   containers:
   - container: javascript
     type: ACR
