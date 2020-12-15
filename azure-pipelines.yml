@@ -1,4 +1,9 @@
 resources:
+  repositories:
+  - repository: common
+    type: github
+    name: juliakm/learn-var
+    endpoint: MyContosoServiceConnection
   containers:
   - container: javascript
     type: ACR
