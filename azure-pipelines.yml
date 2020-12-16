@@ -4,10 +4,14 @@ parameters:
     type: string
 
 variables:
-  skipDeploy: true
+  ${{ if eq( parameters.uid, 'prod' ) }}: 
+    skipDeploy: false 
+  ${{ if ne( parameters.uid, 'prod' ) }}: 
+    skipDeploy: true
 
-  ${{ if eq(parameters.uid, 'prod') }}:
-    skipDeploy: false
+
+steps:
+- script: echo $(skipDeploy)
 
 
 # resources:
