@@ -1,32 +1,61 @@
-resources:
-  pipelines:
-  - pipeline: mypipeline
-    source: resources
-    trigger:
-      branches:
-      - master 
-  repositories:
-  - repository: common
-    type: github
-    name: juliakm/learn-var
-    endpoint: MyContosoServiceConnection
-    trigger: 
-        - master
-        - release/*
-  containers:
-  - container: javascript
-    type: ACR
-    azureSubscription: ARM
-    resourceGroup: cloud-shell-storage-eastus
-    repository: mycontainerjulia.azurecr.io/juliakmpipelinesjavascriptdocker
-    registry: mycontainerjulia.azurecr.io
+trigger: none
+variables: 
+  - name: skipDeploy
+    value: true
+  - name: skipDeploy
+    value: false
+
+stages:
+- stage: one
+  displayName: Stage One
+  variables: 
+    - name: a
+      value: alpha
+    - name: a
+      value: beta
+  jobs: 
+  - job: I
+    displayName: Job I
+    variables:
+      - name: b
+        value: uno
+      - name: b
+        value: dos
+    steps: 
+    - script: echo $(a) #outputs beta
+    - script: echo $(b) #outputs dos
+    - script: echo $(skipDeploy) #outputs false
 
 
-steps:
-- script: echo hello
-- script: echo $(Build.Reason)
-- script: echo $(resources.triggeringAlias)
-- script: echo $(resources.triggeringCategory) 
-#- script: echo $(resources.container.javascript.type)
-#- script: echo $(resources.containers.container.javascript.type)
-- script: printenv
+# resources:
+#   pipelines:
+#   - pipeline: mypipeline
+#     source: resources
+#     trigger:
+#       branches:
+#       - master 
+#   repositories:
+#   - repository: common
+#     type: github
+#     name: juliakm/learn-var
+#     endpoint: MyContosoServiceConnection
+#     trigger: 
+#         - master
+#         - release/*
+#   containers:
+#   - container: javascript
+#     type: ACR
+#     azureSubscription: ARM
+#     resourceGroup: cloud-shell-storage-eastus
+#     repository: mycontainerjulia.azurecr.io/juliakmpipelinesjavascriptdocker
+#     registry: mycontainerjulia.azurecr.io
+
+
+# steps:
+# - script: echo hello
+# - script: echo $(Build.Reason)
+# - script: echo $(resources.triggeringAlias)
+# - script: echo $(resources.triggeringCategory) 
+# #- script: echo $(resources.container.javascript.type)
+# #- script: echo $(resources.containers.container.javascript.type)
+# - script: printenv
