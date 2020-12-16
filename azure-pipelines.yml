@@ -4,10 +4,10 @@ parameters:
     type: string
 
 variables:
-  deployVars.terraform.skipDeploy: true
+  skipDeploy: true
 
   ${{ if eq(parameters.uid, 'prod') }}:
-    deployVars.terraform.skipDeploy: false
+    skipDeploy: false
 
 
 # resources:
