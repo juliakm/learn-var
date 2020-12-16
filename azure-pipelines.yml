@@ -5,9 +5,9 @@ parameters:
 
 variables:
   ${{ if eq( parameters.uid, 'prod' ) }}: 
-    skipDeploy: false 
+    skipDeploy: true 
   ${{ if ne( parameters.uid, 'prod' ) }}: 
-    skipDeploy: true
+    skipDeploy: false
 
 
 steps:
