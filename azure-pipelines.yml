@@ -1,30 +1,13 @@
-trigger: none
-variables: 
-  - name: skipDeploy
-    value: true
-  - name: skipDeploy
-    value: false
+parameters:
+  - name: uid # unique environment ID (e.g. 'prod', 'staging', 'test', 'e2e')
+    default: "prod"
+    type: string
 
-stages:
-- stage: one
-  displayName: Stage One
-  variables: 
-    - name: a
-      value: alpha
-    - name: a
-      value: beta
-  jobs: 
-  - job: I
-    displayName: Job I
-    variables:
-      - name: b
-        value: uno
-      - name: b
-        value: dos
-    steps: 
-    - script: echo $(a) #outputs beta
-    - script: echo $(b) #outputs dos
-    - script: echo $(skipDeploy) #outputs false
+variables:
+  deployVars.terraform.skipDeploy: true
+
+  ${{ if eq(parameters.uid, 'prod') }}:
+    deployVars.terraform.skipDeploy: false
 
 
 # resources:
